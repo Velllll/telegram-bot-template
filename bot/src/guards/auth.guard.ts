@@ -8,6 +8,20 @@ import { Request } from 'express';
 import { parse, validate } from '@telegram-apps/init-data-node';
 import { ConfigService } from '@nestjs/config';
 
+/**
+ * Guard for mini app controllers
+ *
+ * Check authorization for mini app client
+ * You need to send tma token in Authorization header
+ *
+ * @example of authorization header
+ * "Authorization": "tma {INIT_DATA}" #from tg api
+ *
+ * @example of use guard
+ * @UseGuards(BotClientAuthGuard)
+ * @Delete('file/:documentId')
+ * async deleteFile() {}
+ */
 @Injectable()
 export class BotClientAuthGuard implements CanActivate {
   constructor(private readonly configService: ConfigService) {}
