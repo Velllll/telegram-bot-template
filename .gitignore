@@ -1,0 +1,8 @@
+.env
+/s3
+/postgres
+/postgres2.0
+/cache
+.DS_Store
+
+.vscode

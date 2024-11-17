@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  bot-prod:
+    container_name: bot-prod
+    build:
+      context: ./bot
+      target: production
+    tty: true
+    volumes:
+      - ./bot:/usr/src/app
+    env_file:
+      - .env
+    depends_on:
+      - bot-db
+
+  bot-db:
+    container_name: bot-db-prod
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    expose:
+      - "5334"
+    ports:
+      - "5334:5432"
+    restart: always

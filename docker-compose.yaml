@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  bot-dev:
+    container_name: bot-dev
+    build:
+      context: ./bot
+      target: development
+    tty: true
+    working_dir: /usr/server
+    volumes:
+      - ./bot:/usr/server
+    env_file:
+      - .env
+    command: npm run start:dev
+    expose:
+      - "3300"
+    ports:
+      - "3300:3000"
+    depends_on:
+      - bot-db
+
+  bot-db:
+    container_name: bot-db-dev
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    expose:
+      - "5435"
+    ports:
+      - "5435:5432"
+    restart: always
