@@ -6,11 +6,16 @@
 
 Copy .env file and set variables
 
-TELEGRAM_TOKEN - you can generate it in BotFather
-BOT_NAME - any bot name (example my_finance)
-DB_NAME - default name postgres
-DB_USER - default user postgres
+TELEGRAM_TOKEN - you can generate it in BotFather 
+
+BOT_NAME - any bot name (example my_finance) 
+
+DB_NAME - default name postgres 
+
+DB_USER - default user postgres 
+
 DB_PASSWORD - sat any password for your db
+
 DB_HOST - set bot-db (host from dns in docker compose)
 
 ### Start in dev mode
